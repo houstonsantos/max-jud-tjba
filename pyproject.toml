@@ -18,7 +18,9 @@ dependencies = [
     "jinja2 (>=3.1.6,<4.0.0)",
     "pyomo (>=6.9.4,<7.0.0)",
     "highspy (>=1.11.0,<2.0.0)",
-    "matplotlib (>=3.10.6,<4.0.0)"
+    "matplotlib (>=3.10.6,<4.0.0)",
+    "altair (>=5.5.0,<6.0.0)",
+    "nbformat (>=5.10.4,<6.0.0)",
 ]
 
 [tool.poetry]
