@@ -79,3 +79,23 @@ D_jkt['T1'] = pd.MultiIndex.from_arrays([D_jkt['vara_str'], D_jkt['vm_competenci
 D_jkt['T2'] = pd.MultiIndex.from_arrays([D_jkt['vara_str'], D_jkt['vm_competencia']]).map(lookup_q2).fillna(0)
 D_jkt['T3'] = pd.MultiIndex.from_arrays([D_jkt['vara_str'], D_jkt['vm_competencia']]).map(lookup_q3).fillna(0)
 D_jkt['T4'] = pd.MultiIndex.from_arrays([D_jkt['vara_str'], D_jkt['vm_competencia']]).map(lookup_q4).fillna(0)
+
+
+
+# Criando df de comparação do némero de varas por juiz, antes e depois
+juiz_x_vara = (
+    df_alocacoes.groupby('juiz')['vara']
+    .nunique()
+    .reset_index()
+    .sort_values('vara', ascending=False)
+)
+
+juiz_x_vara.columns = ['Juiz', 'Aloc. Vara (depois)']
+
+juiz_x_vara['Aloc. Vara (antes)'] = juiz_x_vara['Juiz'].map(
+    N_it.set_index('juiz_str')[PERIODO_REFERENCIA]
+)
+
+#juiz_x_vara.sort_values(['Aloc. Vara (antes)'], ascending=False, inplace=True)
+
+juiz_x_varas
